@@ -51,8 +51,8 @@ class Fragment_Home : Fragment() { //kkkkkkkkkkk
         setupViewPager() // 뷰페이저2 / 리사이클러뷰 어댑터 설정
 
         //캐릭터 / 디저트 태그 클릭 리스너
-        setupCharacterTagClickListener()
-        setupDessertTagClickListener()
+        //setupCharacterTagClickListener()
+        //setupDessertTagClickListener()
 
         // 사용자의 스와이프 동작 처리
         binding.fragmentHomeViewPager.isUserInputEnabled = true
@@ -63,12 +63,14 @@ class Fragment_Home : Fragment() { //kkkkkkkkkkk
     private fun setupViewPager() { //뷰페이저2 설정 메서드
         binding.fragmentHomeViewPager.adapter = todayPopupAdapter
 
-        viewModel.home_viewPagerImgList.observe(viewLifecycleOwner) { imageList ->
-            bestPopupAdapter.submitList(imageList)
-        }
+        //viewModel.home_viewPagerImgList.observe(viewLifecycleOwner) { imageList ->
+          //  bestPopupAdapter.submitList(imageList)
+
 
         viewModel.home_viewPagerImgList.observe(viewLifecycleOwner) { images ->
             todayPopupAdapter.submitList(images) //어댑터에 이미지목록 제출 (갱신)
+        }
+
 
             // ViewPager2의 첫 번째 페이지로 셋
             binding.fragmentHomeViewPager.post {
@@ -78,25 +80,9 @@ class Fragment_Home : Fragment() { //kkkkkkkkkkk
             handler.postDelayed(autoScrollRunnable, 5000)
         }
 
-        // ViewPager2의 페이지가 변경될 때마다 자동 스크롤을 다시 시작
-        binding.fragmentHomeViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                // 이전에 예약된 자동 스크롤 작업 취소
-                handler.removeCallbacks(autoScrollRunnable)
-                // 새로운 자동 스크롤 작업 예약
-                handler.postDelayed(autoScrollRunnable, 5000)
-                // 페이지가 마지막 페이지인지 확인
-                if (position == todayPopupAdapter.itemCount - 1) {
-                    // 마지막 페이지이면 5초 후에 첫 번째 페이지로 이동
-                    handler.postDelayed({
-                        binding.fragmentHomeViewPager.currentItem = 0
-                    }, 5000)
-                }
-            }
-        })
     }
 
-    private fun setupCharacterTagClickListener() { //캐릭터 태그 클릭 리스너
+   /** private fun setupCharacterTagClickListener() { //캐릭터 태그 클릭 리스너
         binding.btnHomeStoreTagCharacter.setOnClickListener {
             characterTagClicked()
         }
@@ -131,3 +117,4 @@ class Fragment_Home : Fragment() { //kkkkkkkkkkk
         }
     }
 }
+    */
