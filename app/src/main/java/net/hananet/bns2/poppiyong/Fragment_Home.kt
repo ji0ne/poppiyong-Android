@@ -20,13 +20,12 @@ import android.widget.Button
 import android.widget.GridLayout
 
 
-class Fragment_Home : Fragment() { //kkkkkkkkkkk
+class Fragment_Home : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: Home_ViewModel by viewModels()
 
     private val todayPopupAdapter = Home_TodayPopupAdapter()
-    private val bestPopupAdapter = Home_BestPopupAdapter()
 
     private val handler = Handler(Looper.getMainLooper()) //자동 스크롤 핸들러
 
@@ -50,10 +49,6 @@ class Fragment_Home : Fragment() { //kkkkkkkkkkk
 
         setupViewPager() // 뷰페이저2 / 리사이클러뷰 어댑터 설정
 
-        //캐릭터 / 디저트 태그 클릭 리스너
-        //setupCharacterTagClickListener()
-        //setupDessertTagClickListener()
-
         // 사용자의 스와이프 동작 처리
         binding.fragmentHomeViewPager.isUserInputEnabled = true
 
@@ -62,17 +57,10 @@ class Fragment_Home : Fragment() { //kkkkkkkkkkk
 
     private fun setupViewPager() { //뷰페이저2 설정 메서드
         binding.fragmentHomeViewPager.adapter = todayPopupAdapter
-
-        //viewModel.home_viewPagerImgList.observe(viewLifecycleOwner) { imageList ->
-          //  bestPopupAdapter.submitList(imageList)
-
-
         viewModel.home_viewPagerImgList.observe(viewLifecycleOwner) { images ->
             todayPopupAdapter.submitList(images) //어댑터에 이미지목록 제출 (갱신)
         }
-
-
-            // ViewPager2의 첫 번째 페이지로 셋
+        // ViewPager2의 첫 번째 페이지로 셋
             binding.fragmentHomeViewPager.post {
                 binding.fragmentHomeViewPager.currentItem = 0
             }
@@ -82,39 +70,3 @@ class Fragment_Home : Fragment() { //kkkkkkkkkkk
 
     }
 
-   /** private fun setupCharacterTagClickListener() { //캐릭터 태그 클릭 리스너
-        binding.btnHomeStoreTagCharacter.setOnClickListener {
-            characterTagClicked()
-        }
-    }
-
-    private fun setupDessertTagClickListener() { //디저트 태그 클릭 리스너
-        binding.btnHomeStoreTagDessert.setOnClickListener {
-            dessertTagClicked()
-        }
-    }
-
-    private fun characterTagClicked() { //캐릭터 태그 클릭 시 동작
-        val itemList = viewModel.CharacterViewModel().home_StoreTagList_character.value
-        itemList?.let { displayTagItems(it) } // 가져온 리스트가 null이 아니면 태그 아이템을 표시하는 함수를 호출
-    }
-
-    private fun dessertTagClicked() { //디저트 태그 클릭 시 동작
-        val itemList = viewModel.DessertViewModel().home_StoreTagList_dessert.value
-        itemList?.let { displayTagItems(it) }
-    }
-
-    private fun displayTagItems(itemList: List<String>) { //태그 아이템 표시
-        val gridLayout: androidx.gridlayout.widget.GridLayout = binding.gridHomeStoreTag // 그리드 레이아웃
-        gridLayout.removeAllViews() // 그리드 레이아웃의 모든 자식 뷰를 제거 (기존 추가된 뷰 다 밀어야함)
-        itemList.forEach { item -> // 아이템 리스트를 순회하며 각 아이템에 대해 처리
-            val button = Button(requireContext())
-            button.text = item // 버튼의 텍스트를 아이템으로 설정
-            val params = GridLayout.LayoutParams()  // 그리드 레이아웃 변수 params
-            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-            button.layoutParams = params
-            gridLayout.addView(button)  // 버튼을 그리드 레이아웃에 추가
-        }
-    }
-}
-    */
