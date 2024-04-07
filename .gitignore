@@ -81,7 +81,7 @@ obj/
 .cproject
 .settings/
 /res/layout/
-/app/*
+# /app/*
 /poppiyong-Android/*
 .idea_modules/
 atlassian-ide-plugin.xml
@@ -91,3 +91,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
+
+/app/src/main/res/layout/*
+
