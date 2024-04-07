@@ -91,3 +91,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
+
+/app/src/main/res/layout/*
+
