@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
-            .replace(binding.mainFragmentContainer.id, Fragment_Home())
+            .replace(binding.mainFragmentContainer.id, Fragment_DetailPage())
             .commit()
     }
 }
