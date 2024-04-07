@@ -18,7 +18,7 @@ import java.util.*
 import androidx.recyclerview.widget.PagerSnapHelper
 
 // 홈 화면 Fragment 클래스
-class HomeFragment : Fragment() {
+/*class HomeFragment : Fragment() {
     private var adapter: HomeBestPopAdapter? = null // Best 팝업 어댑터
     private var adapter2: HomeTagPopAdapter? = null // 태그별 팝업 어댑터
     private lateinit var viewFlipper: ViewFlipper // 이미지 뷰 플리퍼
@@ -186,4 +186,4 @@ class HomeFragment : Fragment() {
         // 타이머를 중지합니다.
         timer?.cancel()
     }
-}
+} */
